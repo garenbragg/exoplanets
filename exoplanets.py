@@ -1,15 +1,11 @@
 import numpy as np
-import seaborn as sns
 import matplotlib.pyplot as plt
-import matplotlib
 import pandas as pd
 import sklearn
 from sklearn.linear_model import LinearRegression
 from pandas.plotting import scatter_matrix
-from matplotlib import pyplot
 from sklearn.model_selection import train_test_split
 from sklearn.model_selection import cross_val_score
-from sklearn.model_selection import StratifiedKFold
 from sklearn.metrics import classification_report
 from sklearn.metrics import confusion_matrix
 from sklearn.metrics import accuracy_score
@@ -19,14 +15,14 @@ from sklearn.neighbors import KNeighborsClassifier
 from sklearn.discriminant_analysis import LinearDiscriminantAnalysis
 from sklearn.naive_bayes import GaussianNB
 from sklearn.svm import SVC
-from sklearn.impute import KNNImputer
 from sklearn.model_selection import KFold
 from sklearn import preprocessing
 
 #Load, clean and display data
 planets = pd.read_csv("stardata.csv", sep=',', header=0, low_memory=False, names =['pl_pnum','st_optmag','gaia_gmag','st_teff', 'st_mass','st_rad'])
 planets.dropna(inplace=True)
-planets.plot(kind='box', subplots=True, sharex=False, sharey=False)
+#planets.plot(kind='box', subplots=True, sharex=False, sharey=False)
+planets.hist()
 plt.show()
 print(planets.describe())
 
@@ -55,6 +51,6 @@ for name, model in models:
     print('%s: %f (%f)' % (name, cv_results.mean(), cv_results.std()))
 
 #Compare Model Results
-pyplot.boxplot(results, labels=names)
-pyplot.title('Algorithm Comparison')
-pyplot.show()
+plt.boxplot(results, labels=names)
+plt.title('Algorithm Comparison')
+plt.show()
